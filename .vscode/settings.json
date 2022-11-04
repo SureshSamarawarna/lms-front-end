@@ -1,5 +1,8 @@
 {
     "yaml.schemas": {
-        "https://json.schemastore.org/github-workflow.json": "file:///home/suresh/Documents/dep9/phase-4/front-end/.github/workflows/deploy.yml"
+        "https://json.schemastore.org/github-workflow.json": [
+            "file:///home/suresh/Documents/dep9/phase-4/front-end/.github/workflows/deploy.yml",
+            "file:///home/suresh/Documents/dep9/phase-4/front-end/.github/workflows/deploy.yaml"
+        ]
     }
 }
