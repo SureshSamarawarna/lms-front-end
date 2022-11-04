@@ -9,16 +9,26 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
+      - name: Checking out the latest comment
+        uses: actions/checkout@v3
 
-      - run: mkdir dist
+      - name: Create the dist directory
+        run: mkdir dist
+      
+      - name: Copying the everything to the dist directory
+        run: cp -r css js pages index.html dist/
+        
+      - name: Creating the dist directory
+        run: zip -r dist.zip dist/
 
-      - run: cp -r css dist/
-      - run: cp -r js dist/
-      - run: cp -r pages dist/
-      - run: cp -r index.html dist/
+      - name: 'Authenticate to Google Cloud'
+        uses: 'google-github-actions/auth@v0'
+        with:
+          credentials_json: '${{ secrets.GCP_CREDENTIALS }}'
 
-      - run: zip -r dist.zip dist/
+      - name: Seting up the gcloud
+        uses: google-github-actions/setup-gcloud@v0
 
-      - run: ls -la .
+      - name: Deploy the dist.zip
+        run: gcloud compute scp --zone="asia-south1-a" dist.zip dep-9-vm:/opt
 
