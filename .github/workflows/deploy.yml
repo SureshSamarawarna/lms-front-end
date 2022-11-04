@@ -9,4 +9,16 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - run: echo "Hello CI/CD"
+      - uses: actions/checkout@v3
+
+      - run: mkdir dist
+
+      - run: cp -r css/dist
+      - run: cp -r js/dist
+      - run: cp -r pages/dist
+      - run: cp -r index.html/dist
+
+      - run: zip -r dist.zip dist/
+
+      - run: ls -la .
+
